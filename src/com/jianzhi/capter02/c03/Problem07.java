@@ -22,8 +22,10 @@ public class Problem07 {
         }
     }
 
-    public Integer deleteHead() {
-        if (tail == null || tail.size() == 0) {
+    public Integer deleteHead() throws Exception {
+        if (head.isEmpty() && tail.isEmpty()) {
+            throw new Exception("List is Enpoty");
+        } else if (tail == null || tail.size() == 0) {
             return head.pop();
         } else {
             while(tail.size() > 0) {
@@ -48,13 +50,23 @@ public class Problem07 {
     }
 
     public static void main(String[] args) {
+
         Problem07 list = new Problem07();
+        try {
+            System.out.println(list.deleteHead());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         list.appendTail(1);
         list.appendTail(2);
         list.appendTail(3);
         list.appendTail(4);
         list.Print();
-        System.out.println(list.deleteHead());
+        try {
+            System.out.println(list.deleteHead());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         list.Print();
         list.appendTail(6);
         list.Print();
