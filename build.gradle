@@ -27,7 +27,8 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
-	maven { url "http://repo.spring.io/libs-snapshot" }
+//	maven { url "hallprojects ttp://repo.spring.io/libs-snapshot" }
+	maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
 }
 
 
@@ -52,4 +53,25 @@ dependencies {
 	compileOnly("org.projectlombok:lombok:1.16.16")
 	compile group: 'org.assertj', name: 'assertj-core', version: '3.8.0'
 //	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+}
+
+apply plugin: 'maven'
+
+group = 'com.company.root'
+// artifactId is taken by default, from folder name
+version = '0.0.1-SNAPSHOT'
+
+task writeNewPom << {
+	pom {
+		project {
+			inceptionYear '2014'
+			licenses {
+				license {
+					name 'The Apache Software License, Version 2.0'
+					url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+					distribution 'repo'
+				}
+			}
+		}
+	}.writeTo("pom.xml")
 }
